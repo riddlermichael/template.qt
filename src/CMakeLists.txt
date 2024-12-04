@@ -10,6 +10,7 @@ endif()
 
 option(VERBOSE "Enable additional output for developer" OFF)
 
+# see https://doc.qt.io/qt-5/cmake-get-started.html
 # find Qt
 set(QT_COMPONENTS
     Core
@@ -44,9 +45,10 @@ if(WIN32)
     set_target_properties(Qt::windeployqt PROPERTIES IMPORTED_LOCATION "${WIN_DEPLOY_QT_LOCATION}")
 endif()
 
-set(CMAKE_AUTOUIC ON)
+# see https://cmake.org/cmake/help/latest/manual/cmake-qt.7.html
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
 # app
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})

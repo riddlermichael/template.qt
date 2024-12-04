@@ -38,6 +38,7 @@ if(UNIX)
     target_link_options(${APP} PUBLIC "-Wl,-z,origin")
 endif()
 
+# deploy
 if(WIN32)
     # deploy Qt libs
     # if Qt's lib folder is not in PATH, set DEPLOY_QT_ON_BUILD to ON
