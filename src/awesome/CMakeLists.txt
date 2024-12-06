@@ -12,9 +12,13 @@ file(GLOB_RECURSE HEADERS "*.hpp")
 file(GLOB_RECURSE SOURCES "*.cpp")
 file(GLOB_RECURSE UIS "*.ui")
 
+# collect resources
+set(RESOURCES_ROOT "${PROJECT_SOURCE_DIR}/resources")
+set(RESOURCES "${RESOURCES_ROOT}/main.qrc")
+
 # create app
 set(APP ${PROJECT_NAME})
-add_executable(${APP} ${SOURCES} ${HEADERS} ${UIS})
+add_executable(${APP} ${SOURCES} ${HEADERS} ${UIS} ${RESOURCES})
 target_include_directories(${APP} PUBLIC ${AWESOME_HOME})
 target_link_libraries(${APP} PUBLIC Qt5::Core Qt5::Widgets)
 

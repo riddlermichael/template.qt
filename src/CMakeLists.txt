@@ -47,8 +47,9 @@ endif()
 
 # see https://cmake.org/cmake/help/latest/manual/cmake-qt.7.html
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
+# see https://doc.qt.io/qt-5/resources.html
+set(CMAKE_AUTORCC ON)
 
 # app
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR})
