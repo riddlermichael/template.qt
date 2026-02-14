@@ -13,6 +13,7 @@ Checks: >
   readability-*,
   -cppcoreguidelines-avoid-magic-numbers,
   -google-build-using-namespace,
+  -modernize-use-auto,
   -modernize-use-trailing-return-type,
   -performance-avoid-endl,
   -readability-magic-numbers,

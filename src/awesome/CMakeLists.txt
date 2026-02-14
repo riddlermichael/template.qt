@@ -24,15 +24,17 @@ target_link_libraries(${APP} PUBLIC Qt5::Core Qt5::Widgets)
 
 include(GNUInstallDirs)
 
-if(WIN32)
-    set(CMAKE_INSTALL_BINDIR ".")
-    set(CMAKE_INSTALL_LIBDIR ".")
-    set(CMAKE_INSTALL_DATADIR ".")
-
-    set_target_properties(${APP} PROPERTIES WIN32_EXECUTABLE ON)
+if(APPLE)
+    set_target_properties(${APP} PROPERTIES
+        MACOSX_BUNDLE ON
+        MACOSX_BUNDLE_BUNDLE_NAME "${APP}"
+        MACOSX_BUNDLE_BUNDLE_VERSION "${PROJECT_VERSION}"
+        MACOSX_BUNDLE_GUI_IDENTIFIER "com.example.awesome"
+        MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}"
+    )
 endif()
 
-if(UNIX)
+if(LINUX)
     set(CMAKE_SKIP_BUILD_RPATH FALSE)
     set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
     set(CMAKE_INSTALL_RPATH "$ORIGIN/../${CMAKE_INSTALL_LIBDIR}")
@@ -40,6 +42,14 @@ if(UNIX)
 
     target_link_options(${APP} PUBLIC "-Wl,--disable-new-dtags")
     target_link_options(${APP} PUBLIC "-Wl,-z,origin")
+endif()
+
+if(WIN32)
+    set(CMAKE_INSTALL_BINDIR ".")
+    set(CMAKE_INSTALL_LIBDIR ".")
+    set(CMAKE_INSTALL_DATADIR ".")
+
+    set_target_properties(${APP} PROPERTIES WIN32_EXECUTABLE ON)
 endif()
 
 # deploy
