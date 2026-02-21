@@ -18,8 +18,8 @@ set(QT_COMPONENTS
 find_package(Qt5 REQUIRED COMPONENTS ${QT_COMPONENTS})
 # versionless targets and commands are supported from Qt 5.15
 # see https://doc.qt.io/qt-6/cmake-qt5-and-qt6-compatibility.html#pitfalls-when-using-versionless-targets
-if(${VERBOSE})
-    foreach(X ${QT_COMPONENTS})
+if(VERBOSE)
+    foreach(X IN LISTS QT_COMPONENTS)
         if(TARGET Qt5::${X}) # LinguistTools is not a target ¯\_(ツ)_/¯
             get_target_property(LOC Qt5::${X} LOCATION)
             message(STATUS "Found Qt5::${X} at ${LOC}")
@@ -35,7 +35,7 @@ if(WIN32)
         OUTPUT_STRIP_TRAILING_WHITESPACE)
     set(WIN_DEPLOY_QT_LOCATION "${QT_INSTALL_PREFIX}/bin/windeployqt.exe")
     if(EXISTS "${WIN_DEPLOY_QT_LOCATION}")
-        if(${VERBOSE})
+        if(VERBOSE)
             message(STATUS "Found windeployqt at ${WIN_DEPLOY_QT_LOCATION}")
         endif()
     else()
